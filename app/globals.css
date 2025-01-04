@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --gold: 255, 215, 0; /* Bright gold */
+  --black: 0, 0, 0; /* Black */
+  --dark-gold: 184, 134, 11; /* Darker shade of gold */
+  --african-pattern-url: url('/gold_cowrie_shell.png'); /* cowrie shell for pattern */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +22,75 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--black)); /* Ensure background is black */
+  background-image: var(--african-pattern-url); /* Background pattern */
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto 50px; /* Resize the pattern images (height = 50px) */
+  position: relative; /* Allow layering of elements */
+  z-index: 0; /* Set body layer below content */
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+  z-index: -1; /* Ensure overlay is below the content */
+}
+
+h1, h2, h3, h4 {
+  color: rgb(var(--gold));
+  font-weight: bold;
+}
+
+.chat-container {
+  background-color: rgba(0, 0, 0, 0.7); /* Dark with opacity for contrast */
+  padding: 20px;
+  z-index: 1; /* Ensure chat container is on top */
+  border-radius: 10px; /* Optional: rounded corners for style */
+}
+
+.chat-message {
+  background-color: rgb(var(--dark-gold));
+  color: rgb(var(--black));
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  max-width: 75%;
+}
+
+.chat-bubble-user {
+  background-color: rgb(var(--gold));
+  color: rgb(var(--black));
+}
+
+.chat-bubble-bot {
+  background-color: rgb(var(--dark-gold));
+  color: rgb(var(--gold));
+}
+
+button {
+  background-color: rgb(var(--gold)); /* Always golden */
+  color: rgb(var(--black)); /* Black text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  backdrop-filter: blur(5px); /* Add blur backdrop */
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: rgb(var(--dark-gold)); /* Darker gold on hover */
+  color: rgb(var(--gold)); /* Gold text on hover */
+}
+
+/* Optional: Add hover effects for other interactive elements */
+.chat-message:hover {
+  background-color: rgb(var(--gold));
+  color: rgb(var(--black));
 }
