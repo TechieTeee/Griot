@@ -1,4 +1,4 @@
-# Griot
+# Fullstack Chatbot
 
 This is a basic starter project for building with the following tools and APIs:
 
